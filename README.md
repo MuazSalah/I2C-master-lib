@@ -15,9 +15,9 @@ AVR microcontroller to establish connections using the I2C protocol
 	
 The library contains the following files:
 
-+main.c
-+I2C_master.c
-+I2C_master.h
+* main.c
+* I2C_master.c
+* I2C_master.h
 
 ##### main.c
 This is a piece of example code which uses this library to read out
@@ -39,14 +39,14 @@ Read / Write bit (0 = read, 1 = write)
 Though I have only tested this library on an ATmega328P it should be running
 on all major ATmega AVRs like:
 		
-+ATmega644
-+ATmega32
-+ATmega16
-+ATmega328/P
-+ATmega168/P
-+ATmega88/P
-+ATmega44/P
-+ATmega8
+* ATmega644
+* ATmega32
+* ATmega16
+* ATmega328/P
+* ATmega168/P
+* ATmega88/P
+* ATmega44/P
+* ATmega8
 	
 If your device is not supported you can probably adapt this library easily to your
 needs by having a look at the your device's datasheet and changing the register names
@@ -54,11 +54,11 @@ appropriately
 	
 ### 4. Functions in this library
 
-+void I2C_init(void)
-+void I2C_start(uint8_t address)
-+void I2C_write(uint8_t data)
-+uint8_t I2C_read_ack(void)
-+uint8_t I2C_read_nack(void);
+* void I2C_init(void)
+* void I2C_start(uint8_t address)
+* void I2C_write(uint8_t data)
+* uint8_t I2C_read_ack(void)
+* uint8_t I2C_read_nack(void);
 	
 ##### void I2C_init(void)
 This function needs to be called only once to set up the correct SCL frequency 
