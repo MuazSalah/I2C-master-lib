@@ -8,20 +8,20 @@
 4. Functions in this library
 
 ### 1. What is this library? 
-	This library is an I2C master library which uses the TWI peripheral inside the
-	AVR microcontroller to establish connections using the I2C protocol
+This library is an I2C master library which uses the TWI peripheral inside the
+AVR microcontroller to establish connections using the I2C protocol
 	
 ### 2. Contents of this library
 	
-	The library contains the following files:
+The library contains the following files:
 		
-		+main.c
-		+I2C_master.c
-		+I2C_master.h
+	+main.c
+	+I2C_master.c
+	+I2C_master.h
 		
-	#### main.c
-		This is a piece of example code which uses this library to read out
-		and HMC5338L digital compass sensor.
+#### main.c
+	This is a piece of example code which uses this library to read out
+	and HMC5338L digital compass sensor.
 		
 	#### I2C_master.c
 		This file contains all the function declarations to setup and work with the
