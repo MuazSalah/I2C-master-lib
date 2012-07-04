@@ -8,11 +8,10 @@
 #include "I2C_master.h"
 
 #define F_SCL 100000UL // SCL frequency
-#define Prescaler 4
+#define Prescaler 1
 #define TWBR_val ((((F_CPU / F_SCL) / Prescaler) - 16 ) / 2)
 
 void I2C_init(void){
-	TWSR = (1<<TWPS0);
 	TWBR = TWBR_val;
 }
 
