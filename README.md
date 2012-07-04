@@ -58,6 +58,10 @@ If your device is not supported you can probably adapt this library easily to yo
 needs by having a look at the your device's datasheet and changing the register names
 appropriately
 
+The ATtiny range of microcontrolles is not supported as they only provide a USI 
+peripheral which is completely different from the TWI peripheral used on the
+other controllers
+
 ------------------------------------------------------------------------------------
 
 ### 4. Functions in this library
@@ -67,6 +71,7 @@ appropriately
 * void I2C_write(uint8_t data)
 * uint8_t I2C_read_ack(void)
 * uint8_t I2C_read_nack(void);
+* void I2C_stop(void)
 	
 ##### void I2C_init(void)
 This function needs to be called only once to set up the correct SCL frequency 
@@ -99,4 +104,8 @@ This function returns the received byte.
 This function is used to read one byte from a device an then not requesting another 
 byte and therefore stoping the current transmission.
 This function returns the received byte.
+
+##### void I2C_stop(void)
+This function disables the TWI peripheral completely
+and therefore disconnects the device from the bus
 		
