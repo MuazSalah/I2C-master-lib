@@ -7,10 +7,14 @@
 3. Supported devices
 4. Functions in this library
 
+------------------------------------------------------------------------------------
+
 ### 1. What is this library? 
 This library is an I2C master library which uses the TWI peripheral inside the
 AVR microcontroller to establish connections using the I2C protocol
-	
+
+------------------------------------------------------------------------------------
+
 ### 2. Contents of this library
 	
 The library contains the following files:
@@ -34,7 +38,9 @@ This file contains the function prototypes and the definition of the
 Read / Write bit (0 = read, 1 = write)
 		
 *This file has to be included in your source file*
-		
+
+------------------------------------------------------------------------------------
+	
 ### 3. Supported devices
 Though I have only tested this library on an ATmega328P it should be running
 on all major ATmega AVRs like:
@@ -51,7 +57,9 @@ on all major ATmega AVRs like:
 If your device is not supported you can probably adapt this library easily to your
 needs by having a look at the your device's datasheet and changing the register names
 appropriately
-	
+
+------------------------------------------------------------------------------------
+
 ### 4. Functions in this library
 
 * void I2C_init(void)
