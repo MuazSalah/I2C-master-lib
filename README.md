@@ -67,8 +67,8 @@ other controllers
 ### 4. Functions in this library
 
 * void I2C_init(void)
-* void I2C_start(uint8_t address)
-* void I2C_write(uint8_t data)
+* uint8_t I2C_start(uint8_t address)
+* uint8_t I2C_write(uint8_t data)
 * uint8_t I2C_read_ack(void)
 * uint8_t I2C_read_nack(void);
 * void I2C_stop(void)
@@ -77,9 +77,10 @@ other controllers
 This function needs to be called only once to set up the correct SCL frequency 
 for the bus
 		
-##### void I2C_start(uint8_t address)
+##### uint8_t I2C_start(uint8_t address)
 This function needs to be called any time a connection to a new slave device should
-be established. 
+be established. The function returns 1 if an error has occured, otherwise it returns
+0.
 		
 The syntax to start a operation write to a device is either:
 `I2C_start(SLAVE_ADDRESS+I2C_WRITE);`
@@ -91,9 +92,11 @@ The syntax to start a read operation from a device is either:
 or
 `I2C_start(SLAVE_READ_ADDRESS);`
 		
-##### void I2C_write(uint8_t data)
+##### uint8_t I2C_write(uint8_t data)
 This function is used to write data to the currently active device. 
 The only parameter this funcion takes is the 8 bit unsigned integer to be sent.
+The function returns 1 if an error has occured, otherwise it returns
+0.
 		
 ##### uint8_t I2C_read_ack(void)
 This function is used to read one byte from a device and request another byte of data 
