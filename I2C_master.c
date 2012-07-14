@@ -15,14 +15,16 @@ void I2C_init(void){
 	TWBR = TWBR_val;
 }
 
-void I2C_start(uint8_t address){
+uint8_t I2C_start(uint8_t address){
+	// reset TWI control register
+	TWCR = 0;
 	// transmit START condition 
 	TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
 	// wait for end of transmission
 	while( !(TWCR & (1<<TWINT)) );
 	
 	// check if the start condition was successfully transmitted
-	//if((TWSR & 0xF8) != TW_START){ uart_puts("Start condition could not be sent!\r\n"); }
+	if((TWSR & 0xF8) != TW_START){ return 1; }
 	
 	// load slave address into data register
 	TWDR = address;
@@ -32,8 +34,10 @@ void I2C_start(uint8_t address){
 	while( !(TWCR & (1<<TWINT)) );
 	
 	// check if the device has acknowledged the READ / WRITE mode
-	//if( (TWSR & 0xF8) != TW_MT_SLA_ACK ){ uart_puts("Slave has not acknowledged master transmit mode!\r\n"); }
-	//else if( (TWSR & 0xF8) != TW_MR_SLA_ACK ){ uart_puts("Slave has not acknowledged master receive mode!\r\n"); }
+	uint8_t twst = TW_STATUS & 0xF8;
+	if ( (twst != TW_MT_SLA_ACK) && (twst != TW_MR_SLA_ACK) ) return 1;
+	
+	return 0;
 }
 
 void I2C_write(uint8_t data){
@@ -44,7 +48,9 @@ void I2C_write(uint8_t data){
 	// wait for end of transmission
 	while( !(TWCR & (1<<TWINT)) );
 	
-	//if( (TWSR & 0xF8) != TW_MT_DATA_ACK ){ uart_puts("Slave has not acknowledged received data!\r\n"); }
+	if( (TWSR & 0xF8) != TW_MT_DATA_ACK ){ return 1; }
+	
+	return 0;
 }
 
 uint8_t I2C_read_ack(void){
