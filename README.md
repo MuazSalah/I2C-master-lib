@@ -13,6 +13,13 @@
 This library is an I2C master library which uses the TWI peripheral inside the
 AVR microcontroller to establish connections using the I2C protocol
 
+It is as simple as:
+	I2C Master Writing:
+		I2C_Writer(Target_Slave_Address,Slave_Rx_Buffer_Index,Data);
+	I2C Master Reading:
+		TEMP = I2C_Reader(Target_Slave_Address,Slave_Tx_Buffer_Index);
+
+Checkout the included main file, connect both microcontrollers PORTB to some LEDs
 ------------------------------------------------------------------------------------
 
 ### 2. Contents of this library
@@ -71,6 +78,8 @@ other controllers
 * uint8_t I2C_write(uint8_t data)
 * uint8_t I2C_read_ack(void)
 * uint8_t I2C_read_nack(void);
+* void I2C_Writer(uint8_t Address, uint8_t Location, uint8_t Data);
+* uint8_t I2C_Reader(uint8_t Address, uint8_t Location); 
 * void I2C_stop(void)
 	
 ##### void I2C_init(void)
@@ -107,6 +116,32 @@ This function returns the received byte.
 This function is used to read one byte from a device an then not requesting another 
 byte and therefore stoping the current transmission.
 This function returns the received byte.
+
+
+
+
+##### void I2C_Writer(uint8_t Address, uint8_t Location, uint8_t Data)
+This function utilises the above functions to make a single stop function to write to an I2C device,
+tested successfuly in data transfer between two ATmega328P
+
+	Input Parameters:
+		<unsigned 8-bit integer>		<Address>			<Address of the slave I2C member>
+		<unsigned 8-bit integer>		<Location>				<Location in the slave receiver buffer>
+		<unsigned 8-bit integer>		<Data>					<Data to be transmitted>
+		
+	Outputs:
+		N/A
+
+##### uint8_t I2C_Reader(uint8_t Address, uint8_t Location)
+This function also utilises the above functions to make a single stop function to read from an I2C slave device,
+tested successfuly in data transfer between two ATmega328P
+	Input Parameters:
+		<unsigned 8-bit integer>		<Address>		<Address of the slave I2C member>
+		<unsigned 8-bit integer>		<Location>		<Location in the slave transmitting buffer>
+		
+	Outputs:
+		<unsigned 8-bit integer>		<temp>			<Data the have been read from slave>
+
 
 ##### void I2C_stop(void)
 This function disables the TWI peripheral completely

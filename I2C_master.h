@@ -9,6 +9,10 @@ uint8_t I2C_start(uint8_t address);
 uint8_t I2C_write(uint8_t data);
 uint8_t I2C_read_ack(void);
 uint8_t I2C_read_nack(void);
+
+void I2C_Writer(uint8_t Address, uint8_t Location, uint8_t Data);
+uint8_t I2C_Reader(uint8_t Address, uint8_t Location);
+
 void I2C_stop(void);
 
 #endif // I2C_MASTER_H
