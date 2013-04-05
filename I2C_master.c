@@ -107,9 +107,9 @@ uint8_t I2C_read_nack(void)
 void I2C_Writer(uint8_t Address, uint8_t Location, uint8_t Data)
 {
 
-	I2C_start(TargetSlave);			//Start an I2C transfer to the requested Target Slave Address
-	I2C_write(LocationToWriteTo);	//Write data to the specified location in the Slave's receving buffer
-	I2C_write(DataToWrite);			//The data to be written
+	I2C_start(Address);			//Start an I2C transfer to the requested Target Slave Address
+	I2C_write(Location);	//Write data to the specified location in the Slave's receving buffer
+	I2C_write(Data);			//The data to be written
 	I2C_stop();						//End the I2C transmition
 
 }
